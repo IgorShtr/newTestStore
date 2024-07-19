@@ -35,6 +35,7 @@
   if target == product and product.price_varies
     assign money_price = 'products.product.price.from_price_html' | t: price: money_price
   endif
+  assign  discaunt_amount_percentage = product.compare_at_price_max | minus:product.price | times:100 | divided_by:product.compare_at_price_max 
 -%}
 
 {%- unless target == nil -%}
@@ -86,20 +87,27 @@
     </div>
     <div class="price__sale">
       {%- unless product.price_varies == false and product.compare_at_price_varies %}
-        <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
-        <span>
-          <s class="price-item price-item--regular">
-            {% if settings.currency_code_enabled %}
-              {{ compare_at_price | money_with_currency }}
-            {% else %}
-              {{ compare_at_price | money }}
-            {% endif %}
-          </s>
-        </span>
-      {%- endunless -%}
+        <div>
+          <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
+          <span>
+            <s class="price-item price-item--regular">
+              {% if settings.currency_code_enabled %}
+             {{ compare_at_price | money | replace: ".", ","}}
+                {% else %}
+                {{ compare_at_price | replace: ".", "," }}
+              {% endif %}
+              </s>
+              </span>
+              {% if discaunt_amount_percentage != null %}
+                <span class="discount-amount">
+                  ({{ discaunt_amount_percentage }}% Off)
+                </span>
+                {%- endif -%}
+        {%- endunless -%}
+        </div>
       <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.sale_price' | t }}</span>
       <span class="price-item price-item--sale price-item--last">
-        {{ money_price }}
+        {{ product.price | money | replace: ".", "," }}
       </span>
     </div>
     <small class="unit-price caption{% if product.selected_or_first_available_variant.unit_price_measurement == nil %} hidden{% endif %}">

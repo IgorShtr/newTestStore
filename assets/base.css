@@ -1212,7 +1212,7 @@ button.shopify-payment-button__button--unbranded {
   padding: 0 3rem;
   cursor: pointer;
   font: inherit;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   text-decoration: none;
   color: rgb(var(--color-button-text));
   transition: box-shadow var(--duration-short) ease;
@@ -1299,9 +1299,10 @@ button.shopify-payment-button__button--unbranded {
 .button-label,
 .shopify-challenge__button,
 .customer button {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   letter-spacing: 0.1rem;
   line-height: calc(1 + 0.2 / var(--font-body-scale));
+  font-weight: 500;
 }
 
 .button--tertiary {
@@ -2160,13 +2161,13 @@ input[type='checkbox'] {
 }
 
 .announcement-bar .slider-button--next {
-  margin-right: -1.5rem;
-  min-width: 44px;
+  position: absolute;
+  right: -20px;
 }
 
 .announcement-bar .slider-button--prev {
-  margin-left: -1.5rem;
-  min-width: 44px;
+  position: absolute;
+  left: -20px;
 }
 
 .announcement-bar .slider-button--next:focus-visible,
@@ -2896,7 +2897,6 @@ details-disclosure > details {
   line-height: 1;
   padding: 0.5rem 1.3rem 0.6rem 1.3rem;
   text-align: center;
-  background-color: rgb(var(--color-badge-background));
   border-color: rgba(var(--color-badge-border), var(--alpha-badge-border));
   color: rgb(var(--color-badge-foreground));
   word-break: break-word;

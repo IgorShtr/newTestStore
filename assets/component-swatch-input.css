@@ -11,6 +11,7 @@
   transition-property: outline-color, outline-width, box-shadow;
   transition-duration: var(--duration-short);
   transition-timing-function: ease;
+  outline: 0.1rem solid #F6F6F6;
   forced-color-adjust: none;
 }
 
@@ -21,7 +22,7 @@
 /* Active state */
 .swatch-input__input:active + .swatch-input__label,
 .swatch-input__input:checked + .swatch-input__label {
-  outline: 0.1rem solid rgb(var(--color-foreground));
+  outline: 0.1rem solid #9D9D9D;
 }
 
 /* Hover state */

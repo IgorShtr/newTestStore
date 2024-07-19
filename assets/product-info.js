@@ -139,6 +139,17 @@ if (!customElements.get('product-info')) {
 
       getSelectedVariant(productInfoNode) {
         const selectedVariant = productInfoNode.querySelector('variant-selects [data-selected-variant]')?.innerHTML;
+        const selectedVariantObject = JSON.parse(selectedVariant);
+        const colorFromAlt =selectedVariantObject?.featured_media?.alt;
+        const productNailsList = document.querySelectorAll(".thumbnail-list__item");
+        const productMediaSlideList = document.querySelectorAll(".product__media-item");
+        productNailsList.forEach((thumbnail)=>{
+          const thumbnailImage = thumbnail.querySelector("img")?.alt;
+          thumbnail.style.display = "none"
+          if (thumbnailImage === colorFromAlt){
+            thumbnail.style.display = "block"
+          }
+        })
         return !!selectedVariant ? JSON.parse(selectedVariant) : null;
       }
 

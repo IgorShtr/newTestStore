@@ -20,7 +20,7 @@
 
 .price .price-item {
   display: inline-block;
-  margin: 0 1rem 0 0;
+  margin: 0;
 }
 
 .price__regular .price-item--regular {
@@ -75,7 +75,7 @@
 
 .price--on-sale .price__sale {
   display: initial;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
 }
 
@@ -98,4 +98,15 @@
   margin-top: 0.2rem;
   text-transform: uppercase;
   color: rgba(var(--color-foreground), 0.7);
+}
+
+.discount-amount{
+  color: #FA9BA6;
+  text-decoration: line-through;
+  text-decoration-color: #FA9BA6;
+  font-size: 1.6rem;
+}
+
+.price-item--sale{
+  font-size: 2.4rem;
 }

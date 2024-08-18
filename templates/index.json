@@ -66,10 +66,56 @@
         "padding_top": 44,
         "padding_bottom": 36
       }
+    },
+    "test_r7nWzU": {
+      "type": "test",
+      "blocks": {
+        "links_list_EAJ6RB": {
+          "type": "links_list",
+          "settings": {
+            "link_label": "Button label",
+            "link_url": "shopify:\/\/pages\/contact"
+          }
+        },
+        "links_list_zqNgxj": {
+          "type": "links_list",
+          "settings": {
+            "link_label": "Peptides",
+            "link_url": "shopify:\/\/products\/cardigan-de-mangas-bufantes-com-botoes-dourados"
+          }
+        },
+        "links_list_w3wNRp": {
+          "type": "links_list",
+          "settings": {
+            "link_label": "hialuronic acid",
+            "link_url": "\/"
+          }
+        },
+        "links_list_GYexbC": {
+          "type": "links_list",
+          "settings": {
+            "link_label": "Marula oil",
+            "link_url": "shopify:\/\/collections\/all"
+          }
+        }
+      },
+      "block_order": [
+        "links_list_EAJ6RB",
+        "links_list_zqNgxj",
+        "links_list_w3wNRp",
+        "links_list_GYexbC"
+      ],
+      "settings": {
+        "section_title": "Exammple title",
+        "image": "shopify:\/\/shop_images\/75b63ca1303a8da91c66f596d040afd2.jpg",
+        "links_background": "#58656f",
+        "links_hover_color": "#24d424"
+      }
     }
   },
   "order": [
     "image_banner",
-    "featured_collection"
+    "featured_collection",
+    "test_r7nWzU"
   ]
 }

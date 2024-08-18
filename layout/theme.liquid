@@ -249,6 +249,14 @@
           font-size: 1.6rem;
         }
       }
+      @font-face {
+    font-display: swap;
+    font-family: 'GT-America';
+    src: local('GT-America'), local('GT-America'),
+    url("{{'GT-America-Compressed-Black-Trial.otf' | asset_url}}") format('otf');
+    font-weight: normal;
+    font-style: normal;
+  }
     {% endstyle %}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}

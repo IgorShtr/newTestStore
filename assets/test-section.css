@@ -1,0 +1,85 @@
+.test-section-wrapper{
+  font-family: 'GT-America';
+  padding-bottom: 60px;
+}
+.test-section__content {
+  display: flex;
+}
+
+.section-title h2{
+  font-family: 'GT-America';
+  font-weight: 700;
+  font-size: 40px;
+}
+.section-title {
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  padding: 25px;
+  text-transform: uppercase;
+  color: #231f20;
+}
+
+.test-section-media {
+  width: 50%;
+}
+.links-side {
+  max-height: 100vh;
+  width: 50%;
+}
+.test-section-media img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+.links-side {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  padding: 155px 0;
+}
+
+.links-side-link.current {
+  border-bottom: 0.5px solid #ffffff;
+  opacity: 1;
+}
+.links-side-link {
+  color: #ffffff;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 36px;
+  padding-bottom: 2px;
+  opacity: 0.5;
+  cursor: pointer;
+}
+@media only screen and (max-width: 750px) {
+  .test-section-wrapper{
+    padding-bottom: 40px;
+  }
+  .test-section__content {
+    flex-direction: column;
+  }
+  .section-title{
+    padding: 15px;
+  }
+  .section-title h2{
+    font-size: 28px;
+  }
+  .test-section-media {
+    width: 100%;
+    height: 100vw;
+  }
+  .links-side {
+    width: 100%;
+    gap: 25px;
+    padding: 30px 0 30px 0;
+  }
+  .links-side-link {
+    font-size: 23px;
+    line-height: 28px;
+  }
+}

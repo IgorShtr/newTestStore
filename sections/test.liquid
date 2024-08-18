@@ -1,0 +1,113 @@
+{{ 'test-section.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  @media screen and (min-width: 750px) {
+    .links-side-link:hover {
+      color: {{ section.settings.links_hover_color }};
+    }
+  }
+{%- endstyle -%}
+
+<div id="Test-{{ section.id }}" class="test-section-wrapper">
+  <div class="section-title">
+    <h2>{{ section.settings.section_title }}</h2>
+  </div>
+  <div class="test-section__content">
+    {%- if section.settings.image != blank -%}
+      {%- liquid
+        if section.settings.mobile_image != blank
+          assign mobile_image = section.settings.mobile_image
+        else
+          assign mobile_image = section.settings.image
+        endif
+      -%}
+      <div class="test-section-media">
+        <picture>
+          <source srcset="{{ mobile_image | img_url: 'x700' }} 1x, {{ mobile_image | img_url: 'x1400' }} 2x" media="(max-width: 768px)" />
+          <source srcset="{{ section.settings.image | img_url: 'x1400' }} 1x, {{ section.settings.image | img_url: 'x2800' }} 2x" />
+          <img
+            class="banner-image"
+            loading="lazy"
+            src="{{section.settings.image | img_url: 'x1400' }}"
+            alt="test banner image" />
+        </picture>
+      </div>
+    {%- endif -%}
+    <div class="links-side" style="background-color: {{section.settings.links_background}};">
+      {% if page.url != blank %}
+        {% assign current_url = page.url %}
+      {% else %}
+        {% assign current_url = "/" %}
+      {% endif %}
+      {%- for block in section.blocks -%}
+        <a href="{{block.settings.link_url}}" class="links-side-link {% if current_url == block.settings.link_url %} current {% endif %}">
+          {{ block.settings.link_label }}
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "test",
+    "tag": "section",
+    "class": "section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "section_title",
+        "default": "Exammple title",
+        "label": "Section title"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Select Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "mobile_image",
+        "label": "Select mobile image"
+      },
+      {
+        "type": "color",
+        "id": "links_background",
+        "label": "Links section background",
+        "default": "#58656F"
+      },
+      {
+        "type": "color",
+        "id": "links_hover_color",
+        "label": "Links hover color",
+        "default": "#58656F"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "links_list",
+        "name": "Links list",
+        "limit": 5,
+        "settings": [
+          {
+            "type": "text",
+            "id": "link_label",
+            "default": "Some link label",
+            "label": "Link label"
+          },
+          {
+            "type": "url",
+            "id": "link_url",
+            "default": "/",
+            "label": "Link url"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Test"
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,103 @@
+{{ 'look-book-section.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  @media screen and (min-width: 750px) {
+    .links-side-link:hover {
+      color: {{ section.settings.links_hover_color }};
+    }
+  }
+{%- endstyle -%}
+
+<div id="Test-{{ section.id }}" class="look-book-section-wrapper">
+  <div class="section-title">
+    <h2>{{ section.settings.section_title }}</h2>
+  </div>
+  <div class="look-book-section__content"  style="background-color: {{section.settings.links_background}};">
+    {%- if section.settings.image != blank -%}
+      <div class="look-book-section-media">
+        {%- liquid
+          if section.settings.mobile_image != blank
+            assign mobile_image = section.settings.mobile_image
+          else
+            assign mobile_image = section.settings.image
+          endif
+        -%}
+          <picture>
+            <source srcset="{{ mobile_image | img_url: '500x' }} 1x, {{ mobile_image | img_url: '1000x' }} 2x" media="(max-width: 768px)" />
+            <source srcset="{{ section.settings.image | img_url: '1400x' }} 1x, {{ section.settings.image | img_url: 'x2800' }} 2x" />
+            <img
+              class="banner-image"
+              loading="lazy"
+              src="{{section.settings.image | img_url: '1400x' }}"
+              alt="look-book banner image" />
+          </picture>
+      {%- endif -%}
+<popup-manager class="popup-manager">{{section.settings.popup_button_text}}</popup-manager>
+      </div>
+    <div class="right-side" >
+      <p class="description">{{section.settings.description_text}}</p>
+    </div>
+</div>
+
+{% schema %}
+  {
+    "name": "look-book",
+    "tag": "section",
+    "class": "section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "section_title",
+        "default": "Exammple title",
+        "label": "Section title"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Select Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "mobile_image",
+        "label": "Select mobile image"
+      },
+      {
+        "type": "color",
+        "id": "links_background",
+        "label": "Links section background",
+        "default": "#58656F"
+      },
+      {
+        "type": "text",
+        "id": "description_text",
+        "label": "Description text",
+        "default": "Add some description"
+      },
+      {
+        "type": "text",
+        "id": "popup_button_text",
+        "label": "Popup button text",
+        "default": "Shop the look"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "products_list",
+        "name": "Add products",
+        "limit": 5,
+        "settings": [
+          {
+            "type": "product",
+            "id": "product_item",
+            "label": "Chose product"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Look book"
+      }
+    ]
+  }
+{% endschema %}

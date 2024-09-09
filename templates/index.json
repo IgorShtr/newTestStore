@@ -66,10 +66,67 @@
         "padding_top": 44,
         "padding_bottom": 36
       }
+    },
+    "test_r7nWzU": {
+      "type": "test",
+      "blocks": {
+        "links_list_EAJ6RB": {
+          "type": "links_list",
+          "settings": {
+            "link_label": "Button label",
+            "link_url": "shopify:\/\/pages\/contact"
+          }
+        },
+        "links_list_zqNgxj": {
+          "type": "links_list",
+          "settings": {
+            "link_label": "Peptides",
+            "link_url": "shopify:\/\/products\/cardigan-de-mangas-bufantes-com-botoes-dourados"
+          }
+        },
+        "links_list_w3wNRp": {
+          "type": "links_list",
+          "settings": {
+            "link_label": "hialuronic acid",
+            "link_url": "\/"
+          }
+        },
+        "links_list_GYexbC": {
+          "type": "links_list",
+          "settings": {
+            "link_label": "Marula oil",
+            "link_url": "shopify:\/\/collections\/all"
+          }
+        }
+      },
+      "block_order": [
+        "links_list_EAJ6RB",
+        "links_list_zqNgxj",
+        "links_list_w3wNRp",
+        "links_list_GYexbC"
+      ],
+      "settings": {
+        "section_title": "Exammple title",
+        "image": "shopify:\/\/shop_images\/75b63ca1303a8da91c66f596d040afd2.jpg",
+        "links_background": "#58656f",
+        "links_hover_color": "#24d424"
+      }
+    },
+    "look_book_n4Qr6y": {
+      "type": "look-book",
+      "settings": {
+        "section_title": "Look book section title",
+        "image": "shopify:\/\/shop_images\/Screenshot_2024-09-09_at_09.54.11.png",
+        "links_background": "#f3f3f3",
+        "description_text": "Our latest collection demonstrates an elegant eccentricity -bold patterns inspired by traditional nomadic dressing, embroidered buttons, ceramic detailing and artisanal stitching contrast with stark",
+        "popup_button_text": "Shop the look"
+      }
     }
   },
   "order": [
     "image_banner",
-    "featured_collection"
+    "featured_collection",
+    "test_r7nWzU",
+    "look_book_n4Qr6y"
   ]
 }

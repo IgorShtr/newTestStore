@@ -1,4 +1,6 @@
 {{ 'look-book-section.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'popup.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'product-info-card.js' | asset_url }}" defer="defer"></script>
 
 {%- style -%}
   @media screen and (min-width: 750px) {
@@ -12,7 +14,7 @@
   <div class="section-title">
     <h2>{{ section.settings.section_title }}</h2>
   </div>
-  <div class="look-book-section__content"  style="background-color: {{section.settings.links_background}};">
+  <div class="look-book-section__content" style="background-color: {{section.settings.links_background}};">
     {%- if section.settings.image != blank -%}
       <div class="look-book-section-media">
         {%- liquid
@@ -22,82 +24,149 @@
             assign mobile_image = section.settings.image
           endif
         -%}
-          <picture>
-            <source srcset="{{ mobile_image | img_url: '500x' }} 1x, {{ mobile_image | img_url: '1000x' }} 2x" media="(max-width: 768px)" />
-            <source srcset="{{ section.settings.image | img_url: '1400x' }} 1x, {{ section.settings.image | img_url: 'x2800' }} 2x" />
-            <img
-              class="banner-image"
-              loading="lazy"
-              src="{{section.settings.image | img_url: '1400x' }}"
-              alt="look-book banner image" />
-          </picture>
-      {%- endif -%}
-<popup-manager class="popup-manager">{{section.settings.popup_button_text}}</popup-manager>
-      </div>
-    <div class="right-side" >
-      <p class="description">{{section.settings.description_text}}</p>
-    </div>
+        <picture>
+          <source
+            srcset="{{ mobile_image | img_url: '500x' }} 1x, {{ mobile_image | img_url: '1000x' }} 2x"
+            media="(max-width: 768px)"
+          >
+          <source srcset="{{ section.settings.image | img_url: '1400x' }} 1x, {{ section.settings.image | img_url: 'x2800' }} 2x">
+          <img
+            class="banner-image"
+            loading="lazy"
+            src="{{section.settings.image | img_url: '1400x' }}"
+            alt="look-book banner image"
+          >
+        </picture>
+    {%- endif -%}
+    <popup-controller class="popup-controller" popupId="{{section.id}}">
+      {{- section.settings.popup_button_text -}}
+    </popup-controller>
+  </div>
+  <div class="right-side">
+    <p class="description">{{ section.settings.description_text }}</p>
+  </div>
 </div>
+<popup-custom id="popup-id-{{section.id}}" class="">
+  <div class="popup-overlay"></div>
+  <div class="popup-content-wrapper">
+    <svg
+      class="icon--close"
+      height="20"
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      x="0px"
+      y="0px"
+      viewBox="0 0 20 20"
+      xml:space="preserve"
+    >
+      <g class="hover-fill" fill="{{ fill }}">
+        <path d="M12.2,10L20,2.2L17.8,0L10,7.8L2.2,0L0,2.2L7.8,10L0,17.8L2.2,20l7.8-7.8l7.8,7.8l2.2-2.2L12.2,10z"/>
+      </g>
+    </svg>
+    <div class="popup-content">
+      <picture>
+    <source
+      srcset="{{section.settings.image  | img_url: '150x' }} 1x, {{  section.settings.image | img_url: '300x' }} 2x"
+      media="(max-width: 768px)"
+    >
+    <source srcset="{{ section.settings.image  | img_url: '500x' }} 1x, {{  section.settings.image | img_url: '1000x' }} 2x">
+ 
+    <img
+    class=""
+    src="{{ section.settings.image | image_url: width: '500x' }}"
+    width="auto"
+    height="auto"
+    loading="lazy"
+    alt="finder cards comparison"
+    >
+  </picture>
+      <div class="products-section">
+        {%- for block in section.blocks -%}
+          {% assign product = block.settings.product_item %}
+          {% render 'product-card', product: block.settings.product_item , block: block %}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</popup-custom>
 
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
 {% schema %}
-  {
-    "name": "look-book",
-    "tag": "section",
-    "class": "section",
-    "settings": [
-      {
-        "type": "text",
-        "id": "section_title",
-        "default": "Exammple title",
-        "label": "Section title"
-      },
-      {
-        "type": "image_picker",
-        "id": "image",
-        "label": "Select Image"
-      },
-      {
-        "type": "image_picker",
-        "id": "mobile_image",
-        "label": "Select mobile image"
-      },
-      {
-        "type": "color",
-        "id": "links_background",
-        "label": "Links section background",
-        "default": "#58656F"
-      },
-      {
-        "type": "text",
-        "id": "description_text",
-        "label": "Description text",
-        "default": "Add some description"
-      },
-      {
-        "type": "text",
-        "id": "popup_button_text",
-        "label": "Popup button text",
-        "default": "Shop the look"
-      }
-    ],
-    "blocks": [
-      {
-        "type": "products_list",
-        "name": "Add products",
-        "limit": 5,
-        "settings": [
-          {
-            "type": "product",
-            "id": "product_item",
-            "label": "Chose product"
-          }
-        ]
-      }
-    ],
-    "presets": [
-      {
-        "name": "Look book"
-      }
-    ]
-  }
+{
+  "name": "look-book",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "default": "Exammple title",
+      "label": "Section title"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Select Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Select mobile image"
+    },
+    {
+      "type": "color",
+      "id": "links_background",
+      "label": "Links section background",
+      "default": "#58656F"
+    },
+    {
+      "type": "text",
+      "id": "description_text",
+      "label": "Description text",
+      "default": "Add some description"
+    },
+    {
+      "type": "text",
+      "id": "popup_button_text",
+      "label": "Popup button text",
+      "default": "Shop the look"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "products_list",
+      "name": "Add products",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "product",
+          "id": "product_item",
+          "label": "Chose product"
+        },
+        {
+          "type": "select",
+          "id": "picker_type",
+          "options": [
+            {
+              "value": "dropdown",
+              "label": "t:sections.featured-product.blocks.variant_picker.settings.picker_type.options__1.label"
+            },
+            {
+              "value": "button",
+              "label": "t:sections.featured-product.blocks.variant_picker.settings.picker_type.options__2.label"
+            }
+          ],
+          "default": "dropdown",
+          "label": "t:sections.featured-product.blocks.variant_picker.settings.picker_type.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Look book"
+    }
+  ]
+}
 {% endschema %}

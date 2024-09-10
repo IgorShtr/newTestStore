@@ -66,10 +66,46 @@
         "padding_top": 44,
         "padding_bottom": 36
       }
+    },
+    "look_book_n4Qr6y": {
+      "type": "look-book",
+      "blocks": {
+        "products_list_xgV6MW": {
+          "type": "products_list",
+          "settings": {
+            "product_item": "cardigan-de-mangas-bufantes-com-botoes-dourados-beige"
+          }
+        },
+        "products_list_84ye8C": {
+          "type": "products_list",
+          "settings": {
+            "product_item": "cardigan-de-mangas-bufantes-com-botoes-dourados-green"
+          }
+        },
+        "products_list_iXeUXC": {
+          "type": "products_list",
+          "settings": {
+            "product_item": "cardigan-de-mangas-bufantes-com-botoes-dourados-red"
+          }
+        }
+      },
+      "block_order": [
+        "products_list_xgV6MW",
+        "products_list_84ye8C",
+        "products_list_iXeUXC"
+      ],
+      "settings": {
+        "section_title": "Look book section title",
+        "image": "shopify:\/\/shop_images\/Screenshot_2024-09-09_at_09.54.11.png",
+        "links_background": "#f3f3f3",
+        "description_text": "Our latest collection demonstrates an elegant eccentricity -bold patterns inspired by traditional nomadic dressing, embroidered buttons, ceramic detailing and artisanal stitching contrast with stark",
+        "popup_button_text": "Shop the look"
+      }
     }
   },
   "order": [
     "image_banner",
-    "featured_collection"
+    "featured_collection",
+    "look_book_n4Qr6y"
   ]
 }

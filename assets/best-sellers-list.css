@@ -1,0 +1,198 @@
+.custom-page-width {
+  max-width: 1680px;
+  margin: 0 auto;
+}
+.best-sellers__section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.best-sellers__section a{
+  text-decoration: none;
+}
+.best-sellers__item-left-column {
+  width: 42%;
+  margin: 0 auto;
+}
+.best-sellers-list ul {
+  list-style-type: none;
+}
+
+.best-sellers__item-title-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.best-sellers__collection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.best-sellers__collection h4 {
+  font-weight: 500;
+}
+.best-sellers__item-title-block > * {
+  margin: 0;
+}
+.best-sellers__item-title-block .section-title {
+  font-size: 16px;
+  font-weight: 500;
+}
+.best-sellers__item-title-block .collection-title {
+  font-size: 38px;
+  font-weight: 500;
+}
+.best-sellers__item-image-wrapper {
+  width: 50%;
+  position: relative;
+}
+.best-sellers__item {
+  border-bottom: 1px solid #dcdcdc;
+  width: 100%;
+}
+.best-sellers__item .best-sellers__collection h4 {
+  color: #9d9d9d;
+}
+.best-sellers__item .best-sellers__collection path {
+  stroke: #9d9d9d;
+}
+.best-sellers__item.selected {
+  border-bottom: 1px solid #292929;
+}
+.best-sellers__item.selected .best-sellers__collection h4 {
+  color: #292929;
+}
+.best-sellers__item.selected .best-sellers__collection path {
+  stroke: #292929;
+}
+.best-sellers__item .arrow {
+  width: 24px;
+}
+.best-sellers__item-image-wrapper img {
+  width: 100%;
+  border: 0.1px transparent solid;
+  border-radius: 16px;
+  height: auto;
+}
+.icons-wrapper {
+  position: absolute;
+  top: 20px;
+  right: 2%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.best-sellers__item-like,
+.best-seller-image-eye {
+    background-color: #FFFFFF;
+    border: 0.1px transparent solid;
+    border-radius: 16px;
+    padding: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+.best-seller-image-eye.disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+    background-color: #f5f5f5;
+    opacity: 0.5;
+}
+.best-sellers__item-product-detail {
+  position: absolute;
+  bottom: 20px;
+  left: 2%;
+  background-color: white;
+  border: 0.1px transparent solid;
+  border-radius: 16px;
+  width: 96%;
+  font-weight: 500;
+  font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px;
+}
+.best-sellers__item-product-detail .product-title {
+  margin: 0;
+  max-width: 60%;
+  font-weight: 500;
+  line-height: 24px;
+}
+.best-sellers__item-product-detail .prices-wrapper {
+  padding: 0;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  padding: 32px 16px;
+}
+.prices-wrapper .price {
+  color: #e41616;
+}
+.prices-wrapper .compare-at-price {
+  color: #9d9d9d;
+  text-decoration: line-through;
+}
+.best-sellers__item-tags {
+  position: absolute;
+  top: 20px;
+  left: 2%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+.best-sellers__item-tag.bg-red {
+  background-color: #e41616;
+  color: white;
+}
+.best-sellers__item-tag {
+  background-color: white;
+  border: 0.1px transparent solid;
+  padding: 8px 0;
+  border-radius: 8px;
+  font-size: 14px;
+  width: 63px;
+  text-align: center;
+}
+@media (max-width: 991px) {
+  .custom-page-width {
+    max-width: 80%;
+  }
+  .best-sellers__section {
+    flex-direction: column;
+  }
+  .best-sellers__item-left-column,
+  .best-sellers__item-image-wrapper {
+    width: 100%;
+  }
+  .best-sellers-list ul {
+    padding-left: 0;
+  }
+  .best-sellers__item-product-detail {
+    flex-direction: column;
+    align-items: baseline;
+    gap: 5px;
+    padding: 13px 16px;
+  }
+  .best-sellers__item-product-detail .product-title {
+    max-width: none;
+  }
+  .best-sellers__item-product-detail .prices-wrapper {
+    padding: 0;
+  }
+  .icons-wrapper, .best-sellers__item-tags{
+    top: 6px;
+  }
+  .best-sellers__item-like, .best-seller-image-eye {
+    padding: 8px;
+  }
+  .best-sellers__item-tag{
+    padding: 4px 0;
+  }
+}

@@ -612,6 +612,37 @@
         "name": "Collage"
       }
     },
+    "best-sellers": {
+      "name": "Best sellers",
+      "settings": {
+        "section_label": {
+          "default": "Default label",
+          "label": "Section label"
+        },
+        "title": {
+          "label": "Title"
+        },
+      },
+      "blocks": {
+        "featured_collection": {
+          "name": "Collection",
+          "settings": {
+            "collection": {
+              "label": "Collection"
+            },
+            "custom_collection_title": {
+              "label": "Custom collection title"
+            },
+            "first_product": {
+              "label": "Product to layout"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Bests sellers"
+      }
+    },
     "collection-list": {
       "name": "Collection list",
       "settings": {

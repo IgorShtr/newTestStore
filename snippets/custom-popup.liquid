@@ -1,0 +1,21 @@
+{{ 'popup.css' | asset_url | stylesheet_tag }}
+
+<popup-custom id="popup-id-{{ popupId }}" alt-close-class = "popup-overlay">
+  <div class="popup-overlay">
+  </div>
+ <div class="popup-content-wrapper">
+  <div class="popup-header-wrapper">
+    <div class="popup-header">
+      <div class="popup-header-title">
+      </div>
+      <div class="icon-close">
+        {% render 'icon-close', color: "#000000" %}
+      </div>
+    </div>
+
+  </div>
+   <div class="popup-content">
+{{productTitle}} {{ "pop-up.like_popup_added_label" | t }}
+  </div>
+</div> 
+</popup-custom>

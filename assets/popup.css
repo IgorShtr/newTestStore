@@ -1,0 +1,103 @@
+popup-custom {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 1000;
+  visibility: hidden;
+}
+
+popup-custom.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+  opacity: 0;
+}
+
+popup-custom.open .popup-overlay {
+  opacity: 1;
+  overflow: overlay;
+}
+
+.popup-content-wrapper {
+  position: absolute;
+  right: calc(50% - 450px / 2);
+  top: calc(50% - 321px / 2);;
+  display: flex;
+  flex-direction: column;
+  width: 450px;
+  background-color: #ffffff;
+  z-index: 1;
+  transform: translateX(100%);
+  padding-bottom: 24px;
+  max-height: 100vh;
+}
+
+popup-custom.open .popup-content-wrapper {
+  height: 20%;
+  transform: translateX(0%);
+}
+
+.popup-header-wrapper {
+  padding: 5px;
+}
+
+.popup-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding-bottom: 5px;
+}
+
+.popup-header-title {
+  font-size: 24px;
+  font-weight: var(--font-weight-semibold, 600);
+}
+
+.icon-close {
+  height: 24px;
+  width: 24px;
+  cursor: pointer;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+.icon-close:hover svg path {
+  stroke: #000000;
+  stroke-width: 1px;
+}
+
+.popup-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: rgba(77, 115, 138, 0.1);
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 22px;
+  max-height: calc(100vh - 155px);
+  font-size: 16px;
+}
+
+@media (max-width: 560px) {
+  .popup-content-wrapper {
+    width: 100dvw;
+    right: 0;
+  }
+  .popup-content {
+    max-height: calc(100dvh - 180px);
+  }
+}

@@ -57,6 +57,9 @@
       "name": "Slider"
     }
   },
+  "pop-up": {
+      "like_popup_added_label": "has been added to the your wishlist."
+  },
   "newsletter": {
     "label": "Email",
     "success": "Thanks for subscribing",

@@ -66,10 +66,40 @@
         "padding_top": 44,
         "padding_bottom": 36
       }
+    },
+    "best_sellers_y6zLYG": {
+      "type": "best-sellers",
+      "blocks": {
+        "featured_collection_F9NeqX": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "frontpage",
+            "collection_handled_title": "Custom collection name",
+            "product": "cardigan-de-mangas-bufantes-com-botoes-dourados-green"
+          }
+        },
+        "featured_collection_CDdBgm": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "",
+            "collection_handled_title": "",
+            "product": ""
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_F9NeqX",
+        "featured_collection_CDdBgm"
+      ],
+      "name": "t:sections.best-sellers.presets.name",
+      "settings": {
+        "title": "Best sellers"
+      }
     }
   },
   "order": [
     "image_banner",
-    "featured_collection"
+    "featured_collection",
+    "best_sellers_y6zLYG"
   ]
 }

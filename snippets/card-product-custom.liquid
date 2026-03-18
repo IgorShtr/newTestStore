@@ -1,0 +1,106 @@
+{% comment %}
+  Renders a product card
+
+  Accepts:
+  - card_product: {Object} Product Liquid object (optional)
+  - show_secondary_image: {Boolean} Show the secondary image on hover. Default: false (optional)
+  - show_vendor: {Boolean} Show the product vendor. Default: false
+{% endcomment %}
+{%- if card_product and card_product != empty -%}
+  <div class="p=4">
+    <a href="{{ card_product.url }}">
+  <images-manager class="">
+    {% for variant in  card_product.variants %}
+      {% assign current_variant = card_product.selected_or_first_available_variant %}
+      {% assign lover_case_title = variant.title | downcase %}
+      {% assign variant_images = card_product.media | where: "alt", lover_case_title %}
+    <div class="group relative overflow-hidden min-h-[310px] border-solid border-[1px] rounded-[10px] border-custom-grey  flex justify-center items-center {% if forloop.index == 1 %}block{% else %}hidden{% endif %}" data-variant-key="{{variant.title}}">
+      {% if variant_images.size > 1 %}
+              <picture  class="h-full w-auto object-cover transition-opacity duration-300 group-hover:opacity-0">
+                          <source
+                              srcset="{{ variant_images[0] | img_url: '360x' }} 1x, {{ variant_images[0]  | img_url: '720x' }} 2x"
+                              media="(max-width: 991px)"
+                          />
+                          <img
+                              loading="lazy"
+                              src="{{ variant_images[0] | img_url: '600x' }}"
+                              srcset="{{ variant_images[0] | img_url: '600x' }} 1x, {{ image | img_url: '1200x' }}, 2x"
+                              alt="{{ variant_images[0].alt | default: shop.name }}"
+                              width="{{ variant_images[0].width }}"
+                              height="{{ variant_images[0].height }}"
+                          />
+                </picture>
+                <picture class="absolute inset-0 flex justify-center h-full  w-auto object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                            <source
+                                srcset="{{ variant_images[1] | img_url: '360x' }} 1x, {{ variant_images[1]  | img_url: '720x' }} 2x"
+                                media="(max-width: 991px)"
+                            />
+                            <img
+                                loading="lazy"
+                                src="{{  variant_images[1]  | img_url: '600x' }}"
+                                srcset="{{ variant_images[1]  | img_url: '600x' }} 1x, {{ image | img_url: '1200x' }}, 2x"
+                                alt="{{ variant_images[1].alt | default: shop.name }}"
+                                width="{{ variant_images[1].width }}"
+                                height="{{ variant_images[1].height }}"
+                                class=" object-contain"
+                            />
+                </picture>
+                 <div class="absolute top-8 left-8 ">
+                  {%- for tag in card_product.tags -%}
+                    <div class="px-4 border-solid border-[1px] border-[#FF0000] rounded-[26px] text-[#FF0000] leading-tight text-small font-franklin py-2  font-medium">
+                      {{tag}}
+                    </div>
+                  {%- endfor -%} 
+                  </div>
+    {% endif %}
+    </div>
+    {%- endfor -%}
+    </images-manager>
+    </a>
+    <div class="flex flex-col items-start text-small pt-[9px]">
+      {%- for option in card_product.options_with_values -%}
+      {%- if option.name == 'Color' -%}
+      
+        <card-images-controller class="flex  mb-[7px]">
+          {%- for value in option.values -%}
+            {% for variant in card_product.variants %}
+              {% if variant.options contains value.name %}
+                {% assign is_available = variant.available  %}
+                {% break %}
+              {% endif %}
+            {% endfor %}
+            <div 
+            class="h-[24px] w-[24px] rounded-full cursor-pointer border-solid border-[1px] flex items-center justify-center 
+            {% unless is_available == true%}opacity-50 pointer-events-none{% endunless %}
+            {% if forloop.index == 1  %} border-custom-blue {% else %} border-transparent{% endif %} controller-item"
+            >
+              <div class="h-[20px] w-[20px] rounded-full relative cursor-pointer " style="background-color: {{ value.swatch.color }};" data-option="{{ value.name }}">
+                 {% unless is_available == true%}
+                    <div class="relative h-[20px] w-[20px] rounded-full bg-transparent
+                              after:absolute after:top-1/2 after:left-0 after:h-[1px] after:w-full 
+                              after:-translate-y-1/2 after:-rotate-45 after:bg-custom-blue after:content-['']">
+                  </div>
+                {% endunless %}
+              </div>
+            </div>
+          {%- endfor -%}
+        </card-images-controller>
+      {%- endif -%}
+    {%- endfor -%}
+    <div>
+      {% if show_vendor %}
+        <p class="mb-[3px]  tracking-normal tracking-[0px]">
+          {{ card_product.vendor }}
+        </p>
+         {%- endif -%}
+        <h5 class=" text-title font-medium text-medium mb-[3px] tracking-[0px]">
+          {{ card_product.title }}
+        </h5>
+        <div class="flex gap-1 text-small">
+          <p class="line-through">{{ card_product.compare_at_price | money }}</p>
+          <p class="text-[#FF0000]">{{ card_product.price | money}}</p>
+        </div>
+    </div>
+    </div>
+  </div>
+{%- endif -%}

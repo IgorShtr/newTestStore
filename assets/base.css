@@ -75,6 +75,14 @@
 }
 
 /* base */
+@font-face {
+  font-family: 'Franklin Gothic ATF';
+  src:url('https://cdn.shopify.com/s/files/1/0619/6749/9318/files/franklin-gothic-atf-regular.woff2?v=1773821623') format('woff2'),
+      url('https://cdn.shopify.com/s/files/1/0619/6749/9318/files/FranklinGothic.woff?v=1773819775') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 
 .page-width {
   max-width: var(--page-width);
